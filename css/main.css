@@ -40,3 +40,12 @@ body {
     background-color: #4CAF50;
     color: white;
 }
+
+.allignLeft {
+    float: left;
+    padding: 2px 5px 2px 5px;
+}
+.allignRight {
+    float: right;
+    padding: 2px 5px 2px 5px;
+}
