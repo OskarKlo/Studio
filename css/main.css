@@ -1,10 +1,14 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar Alligned Left*/
+/* NavLinks Left */
 .topnav a.left {
     float: left;
     display: block;
@@ -14,7 +18,7 @@
     text-decoration: none;
     font-size: 17px;
 }
-
+/* NavLinks Right */
 .topnav a.right {
     float: right;
     display: block;
