@@ -13,9 +13,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<!-- Navigation Bar -->
 	<nav>
 		<div class="topnav" id="myTopnav">
+			<a href="index.html"class="left">Logo</a>
 			<a href="index.html"class="left">Home</a>
+			<a href="feed.html"class="left">Feed</a>
 			<a href="upload.html" class="active left">Upload</a>
 			<a href="map.html" class="left">Map</a>
 			<a href="#about" class="left"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
@@ -24,7 +27,43 @@
 			<a href="#user" class="right"><i class="fa fa-user" aria-hidden="true"></i></a>
 		</div>
 	</nav>
+<!-- Page Content --> 
+<div class="container">
+		<!-- Features Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Add Street Art</h2>
+            </div>
+            <div class="col-md-6">
+                <form class="form-upload">
+					<button class="btn btn-sm btn-secondary btn-block" type="submit">Add Image</button>
+					<label for="inputArtist" class="sr-only">Artist</label>
+					<input type="text" id="inputArtist" class="form-control" placeholder="Artist" required autofocus>
+					<label for="inputDate" class="sr-only">Last Seen</label>
+					<input type="text" id="inputDate" class="form-control" placeholder="Last Seen" required>
+					<label for="inputLocation" class="sr-only">Location</label>
+					<input type="text" id="inputLocation" class="form-control" placeholder="Location" required autofocus>
+					<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me"> Terms and Conditions
+					</label>
+					</div>
+					<label for="condition">Condition</label>
+					<select id="condition" placeholder="Condition">
+						<option value="Awesome">Awesome</option>
+						<option value="Good">Good</option>
+						<option value="Mild">Mild</option>
+						<option value="Poor">Poor</option>
+					</select>
+					<button class="btn btn-sm btn-primary btn-block" type="submit">Upload</button>
+				</form>
+            </div>
+            <div class="col-md-6">
+                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+            </div>
+        </div>
 
+</div>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 </body>
 </html>
