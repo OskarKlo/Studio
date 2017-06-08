@@ -9,3 +9,18 @@ button.addEventListener('click', handleClick);
 // req.onload = function (event) { . . . };
 // req.open('get', 'some-file.txt', true);
 // req.send();
+
+$('.trial').css('color', 'white');
+
+$.get('/data.json', function (data) {
+    console.log("IT worked");
+}).fail(function () {
+    console.log("IT failed");
+});
+
+$.post('index.html', { username: 'tom' }, function (data) {
+    console.log(data);
+}).fail(function () {
+    console.log('another fail');
+});
+
