@@ -24,3 +24,12 @@ $.post('index.html', { username: 'tom' }, function (data) {
     console.log('another fail');
 });
 
+// When Window Loads
+// var alertAQuestion = function (event) {
+//     console.log("Window loaded!");
+// };
+
+// $(window).ready(alertAQuestion);
+
+// $(alertAQuestion);
+
