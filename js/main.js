@@ -13,6 +13,8 @@
         //Sign In
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
+        //Remove later!!!
+        console.log(pass);
     });
 
     //SignUp event
@@ -23,6 +25,8 @@
         //Sign In
         const promise = auth.createUserWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
+        //Remove later!!!
+        console.log(pass);
     });
 
     btnLogout.addEventListener('click', e => {
