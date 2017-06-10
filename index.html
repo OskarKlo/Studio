@@ -21,10 +21,13 @@
 			<a href="upload.html" class="left">Upload</a>
 			<a href="map.html" class="left">Map</a>
 			<a href="#about" class="left"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-			<a href="signIn.html" id="signIn" class="btn btn-primary right">Log In</a>
-			<a href="#signup" class="right">Sign Up</a>
 			<a href="#" id="logOut" class="btn right hide">Log Out</a>
-			<a href="#user" class="right"><i class="fa fa-user" aria-hidden="true"></i></a>
+			<a href="#user" class="hide right"><i class="fa fa-user" aria-hidden="true"></i></a>
+			<input id="txtEmail" type="email" placeholder="Email">
+			<input id="txtPassword" type="password" placeholder="Password">
+    		<button id="btnLogin" class="btn btn-action right">Log In</button>
+			<button id="btnSignUp" class="btn btn-secondary right">Sign Up</button>
+			<button id="btnLogout" class="btn btn-action hide right">Log Out</button>
 		</div>
 	</nav>
 
@@ -123,6 +126,20 @@
         <hr>
     </div>
 
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB34kc_4jvEF3R7IeeGZ_rT_g5Kg0T7aWk",
+    authDomain: "studio-8a79b.firebaseapp.com",
+    databaseURL: "https://studio-8a79b.firebaseio.com",
+    projectId: "studio-8a79b",
+    storageBucket: "studio-8a79b.appspot.com",
+    messagingSenderId: "1017262570857"
+  };
+  firebase.initializeApp(config);
+</script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 <script src="js/main.js"></script>
