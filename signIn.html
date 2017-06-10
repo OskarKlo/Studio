@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
 
@@ -17,28 +16,21 @@
     <!-- Custom styles for this template -->
     <link href="css/signIn.css" rel="stylesheet">
   </head>
-
   <body>
 
-    <div class="container">
+  <div class="container">
+    <input id="txtEmail" type="email" placeholder="Email">
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Art Studio</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <button class="emailInput">TEXT</button>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <!--<div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>-->
-        <button class="btn btn-lg btn-primary btn-block signIn" type="submit">Sign in</button>
-        <p><u><small>forgot your password?</small></u></p>
-      </form>
-    </div> 
+    <input id="txtPassword" type="password" placeholder="Password">
+    
+    <button id="btnLogin" class="btn btn-action">Log In</button>
 
-    <script src="js/signIn.js"></script>
+    <button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
+
+    <button id="btnLogout" class="btn btn-action hide">Log Out</button>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
