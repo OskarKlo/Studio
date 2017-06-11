@@ -54,3 +54,28 @@
     });
 
     //End of Auth
+
+    //Database 
+
+    // var database = firebase.database();
+
+    // const artistName = document.getElementById('artistName');
+    // const artistEmail = document.getElementById('artistEmail');
+    // const artistImage = document.getElementById('artistImage');
+    // const branchTree = document.getElementById('addTree');
+
+    // branchTree.addEventListener('click', e => {
+    //     writeUserData(artistName, artistEmail, artistImage);
+    //     console.log('success');
+    // });
+
+    // function writeUserData(name, email, imageUrl) {
+    //     firebase.database().ref('users/' + name).set({
+    //         username: name,
+    //         email: email,
+    //         profile_picture : imageUrl
+    //     });
+    // }
+
+    const preObject = document.getElementById('object');
+    const dbRefObject = firebase.database().ref().child('object');
