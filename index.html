@@ -40,10 +40,10 @@
       </div>
     </div>
 
-	
-
-	<pre id="object"></pre>
-
+	<div>
+		<textarea id="mainText" placeholder="input text"></textarea>
+		<button id="saveText" onclick="submitClick()">Submit</button>
+	</div>	
 
     <!-- Page Content -->
     <div class="container">
@@ -140,7 +140,7 @@
   var config = {
     apiKey: "AIzaSyB34kc_4jvEF3R7IeeGZ_rT_g5Kg0T7aWk",
     authDomain: "studio-8a79b.firebaseapp.com",
-    databaseURL: "https://studio-8a79b.firebaseio.com",
+	databaseURL: "https://studio-8a79b.firebaseio.com/",
     projectId: "studio-8a79b",
     storageBucket: "studio-8a79b.appspot.com",
     messagingSenderId: "1017262570857"
@@ -148,6 +148,7 @@
   firebase.initializeApp(config);
 </script>
 <script src="js/jquery-3.2.1.js"></script>
+<script src="js/side.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 <script src="js/main.js"></script>
 </body>
