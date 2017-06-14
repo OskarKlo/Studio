@@ -41,6 +41,10 @@ body {
     color: white;
 }
 
+.floatLeft {
+    float: left;
+}
+
 .allignLeft {
     float: left;
     padding: 10px 9px;

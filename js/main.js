@@ -4,6 +4,7 @@
     const btnLogin = document.getElementById('btnLogin');
     const btnSignUp = document.getElementById('btnSignUp');
     const btnLogout = document.getElementById('btnLogout');
+    const userSet = document.getElementById("userSettings");
 
     //Login Event
     btnLogin.addEventListener('click', e => {
@@ -37,14 +38,15 @@
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser) {
             console.log(firebaseUser);
-            // window.location.replace("index.html");
             btnLogout.classList.remove('hide');
+            userSet.classList.remove('hide');
             txtEmail.classList.add('hide');
             txtPassword.classList.add('hide');
             btnLogin.classList.add('hide');
             btnSignUp.classList.add('hide');
         } else {
             console.log('not logged in');
+            userSet.classList.add('hide');
             btnLogout.classList.add('hide');
             txtEmail.classList.remove('hide');
             txtPassword.classList.remove('hide');
@@ -68,3 +70,4 @@ function submitClick() {
     // Pushes the value under new unique id child each time
     dbRef.push().set(messageText);
 };
+

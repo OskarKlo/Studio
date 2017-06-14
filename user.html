@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Art Studio</title>
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<nav>
+		<div class="topnav" id="myTopnav">
+			<a href="index.html"class="left">Logo</a>
+			<a href="index.html"class="left">Home</a>
+			<a href="feed.html"class="left">Feed</a>
+			<a href="upload.html" class="left">Upload</a>
+			<a href="map.html" class="left">Map</a>
+			<a href="#about" class="left"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+            <a href="user.html" id="userSettings" class="hide active allignRight"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <input id="txtEmail" class="enjoy-css allignRight" type="email" placeholder="Email">
+            <input id="txtPassword" class="enjoy-css allignRight" type="password" placeholder="Password">
+            <button id="btnLogin" class="btn btn-action allignRight loginButton">Log In</button>
+            <button id="btnSignUp" class="btn btn-secondary allignRight signUpButton">Sign Up</button>
+            <button id="btnLogout" class="btn btn-action hide allignRight logoutButton">Log Out</button>
+		</div>
+	</nav>
+
+
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB34kc_4jvEF3R7IeeGZ_rT_g5Kg0T7aWk",
+    authDomain: "studio-8a79b.firebaseapp.com",
+	databaseURL: "https://studio-8a79b.firebaseio.com/",
+    projectId: "studio-8a79b",
+    storageBucket: "studio-8a79b.appspot.com",
+    messagingSenderId: "1017262570857"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="https://use.fontawesome.com/057b8f46a6.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
