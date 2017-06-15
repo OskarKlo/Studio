@@ -13,6 +13,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<!--Navigation Bar-->
 	<nav>
 		<div class="topnav" id="myTopnav">
 			<a href="index.html"class="left">Logo</a>
@@ -36,10 +37,14 @@
         <input id="artistName" placeholder="Artist Name"></input>
 		<input id="artistEmail" placeholder="Artist Email"></input>
 		<input id="artistImage" placeholder="Artist Image"></input>
-        <p><a id="addTree" class="btn btn-primary btn-lg trial" href="#" role="button">ADD &raquo;</a></p>
+		<button id="writeUserData" onclick="writeUserData()">Add</button>
+		<p id="likeCount"></p>
+		<button id='addLike'>Like</button>
+        <!--<p><a id="addTree" class="btn btn-primary btn-lg trial" href="#" role="button">ADD &raquo;</a></p>-->
       </div>
     </div>
 
+	<!--TEST-->
 	<div>
 		<textarea id="mainText" placeholder="input text"></textarea>
 		<button id="saveText" onclick="submitClick()">Submit</button>
@@ -57,7 +62,7 @@
             <!--Trending-->
             <div class="col-md-4 text-center">
                 <div class="">
-                    <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+                    <img id="post-id" class="img-responsive" src="http://placehold.it/700x450" alt="">
                     <div class="caption">
 						<small class="allignLeft"><i class="fa fa-heart" aria-hidden="true"></i></small>
 						<small class="allignLeft">#</small>
@@ -147,6 +152,9 @@
   };
   firebase.initializeApp(config);
 </script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>-->
+<script src="js/likeCount.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 <script src="js/main.js"></script>
