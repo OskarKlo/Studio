@@ -38,12 +38,4 @@ likeButton.addEventListener('click', e => {
     dbRefLikeCount.transaction(function (current_value) {
   return (current_value || 0) + 1;
 });
-    // numLikes.innerHTML = dbRefLikeCount.val();
-//     console.log('clicked');
-//     dbRefLikes.on('child_changed', snap => {
-//     var likeCount = snap.val();
-//     likeCount++;
-//     console.log(likeCount);
-//     dbRefLikes.set(likeCount);
-// })
 })
