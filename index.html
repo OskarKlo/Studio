@@ -41,6 +41,10 @@
 		<p id="likeCount"></p>
 		<button id='addLike'>Like</button>
 		<button id='removeLike'>Unlike</button>
+		<progress value="0" max="100" id="uploader">0%</progress>
+		<input type="file" value="upload" id="fileButton" />
+		<input type="button" value ="view Image" id="viewbtn" onclick="showimage();">
+    	<img id="photoBox" src="test" height="125px" width="200px"/> 
         <!--<p><a id="addTree" class="btn btn-primary btn-lg trial" href="#" role="button">ADD &raquo;</a></p>-->
       </div>
     </div>
@@ -155,6 +159,7 @@
 </script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>-->
+<script src="js/storage.js"></script>
 <script src="js/likeCount.js"></script>
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
