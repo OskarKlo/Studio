@@ -13,7 +13,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- Navigation Bar -->
+	<!--Navigation Bar-->
 	<nav>
 		<div class="topnav" id="myTopnav">
 			<a href="index.html"class="left">Logo</a>
@@ -22,11 +22,15 @@
 			<a href="upload.html" class="active left">Upload</a>
 			<a href="map.html" class="left">Map</a>
 			<a href="#about" class="left"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-			<a href="signIn.html" class="right">Log In</a>
-			<a href="#signup" class="right">Sign Up</a>
-			<a href="#user" class="right"><i class="fa fa-user" aria-hidden="true"></i></a>
+			<a href="user.html" id="userSettings" class="hide allignRight"><i class="fa fa-user" aria-hidden="true"></i></a>
+			<input id="txtEmail" class="enjoy-css allignRight" type="email" placeholder="Email">
+			<input id="txtPassword" class="enjoy-css allignRight" type="password" placeholder="Password">
+    		<button id="btnLogin" class="btn btn-action allignRight loginButton">Log In</button>
+			<button id="btnSignUp" class="btn btn-secondary allignRight signUpButton">Sign Up</button>
+			<button id="btnLogout" class="btn btn-action hide allignRight logoutButton">Log Out</button>
 		</div>
 	</nav>
+
 <!-- Page Content --> 
 <div class="container">
 		<!-- Features Section -->
@@ -36,7 +40,8 @@
             </div>
             <div class="col-md-6">
                 <form class="form-upload">
-					<button class="btn btn-sm btn-secondary btn-block" type="submit">Add Image</button>
+					<input class="btn btn-sm btn-secondary btn-block" type="file" value="upload" id="fileButton" />
+					<progress value="0" max="100" id="uploader">0%</progress>
 					<label for="inputArtist" class="sr-only">Artist</label>
 					<input type="text" id="inputArtist" class="form-control" placeholder="Artist" required autofocus>
 					<label for="inputDate" class="sr-only">Last Seen</label>
@@ -59,11 +64,31 @@
 				</form>
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+                <img class="hide img-responsive" id="photoBox" src="test">
             </div>
         </div>
 
 </div>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB34kc_4jvEF3R7IeeGZ_rT_g5Kg0T7aWk",
+    authDomain: "studio-8a79b.firebaseapp.com",
+	databaseURL: "https://studio-8a79b.firebaseio.com/",
+    projectId: "studio-8a79b",
+    storageBucket: "studio-8a79b.appspot.com",
+    messagingSenderId: "1017262570857"
+  };
+  firebase.initializeApp(config);
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>-->
+<script src="js/storage.js"></script>
+<script src="js/likeCount.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="https://use.fontawesome.com/057b8f46a6.js"></script>
+<script src="js/main.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 </body>
 </html>

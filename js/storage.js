@@ -130,25 +130,26 @@ fileButton.addEventListener('change', function (e) {
             //     }
             // };
             uploader.value = percentage;
-            console.log('upload completed');
         },
         function error(err) {
-
+            console.log('uploadTask error')
         },
         function complete() {
-
+            console.log('complete');
+            showimage(file);
         }
     );
 });
 
-function showimage() {
+function showimage(e) {
     var storageRef = firebase.storage().ref();
-    var spaceRef = storageRef.child('photos/ModernLisa.jpeg');
-    storageRef.child('photos/ModernLisa.jpeg').getDownloadURL().then(function(url) {
+    var spaceRef = storageRef.child('photos/' + e.name);
+    document.getElementById('photoBox').classList.remove('hide');
+    storageRef.child('photos/' + e.name).getDownloadURL().then(function(url) {
         var test = url;
         console.log(url);
         document.getElementById('photoBox').src = test;
     }).catch(function(error) {
-
+        console.log('show Image error')
     });
 }
