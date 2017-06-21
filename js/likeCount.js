@@ -26,7 +26,7 @@ const unlikeButton = document.getElementById('removeLike');
 // const numLikes = document.getElementById('likeCount');
 unlikeButton.addEventListener('click', e => {
     console.log('unlike clicked');
-    dbRefLikeList.child('likes').remove();
+    // dbRefLikeList.child('likes').remove(e);
     dbRefLikeCount.transaction(function (current_value) {
   return (current_value || 0) - 1;
 });
@@ -34,7 +34,7 @@ unlikeButton.addEventListener('click', e => {
 
 likeButton.addEventListener('click', e => {
     console.log('like clicked');
-    dbRefLikeList.push("true");
+    // dbRefLikeList.push("true");
     dbRefLikeCount.transaction(function (current_value) {
   return (current_value || 0) + 1;
 });

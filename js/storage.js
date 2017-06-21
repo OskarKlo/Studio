@@ -153,3 +153,17 @@ function showimage(e) {
         console.log('show Image error')
     });
 }
+
+// document.onload = function feedImage() {
+//     var storageRef = firebase.storage().ref();
+//     var imageRef = storageRef.child('photos/' + e.name);
+//     imageRef.getDownloadURL().then(function(url) {
+//         var link = url;
+//         var image = document.createElement('img');
+//         feedImage.classList.add('feedImage');
+//         var feedImage = document.getElementById('feedImage');
+//         feedImage.src = link;
+//     }).catch(function(error) {
+//         console.log('feedImage error');
+//     });
+// }

@@ -1,4 +1,6 @@
 
+    var database = firebase.database();
+
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
     const btnLogin = document.getElementById('btnLogin');
@@ -14,8 +16,6 @@
         //Sign In
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
-        //Remove later!!!
-        console.log(pass);
     });
 
     //SignUp event
@@ -24,10 +24,38 @@
         const pass = txtPassword.value;
         const auth = firebase.auth();
         //Sign In
-        const promise = auth.createUserWithEmailAndPassword(email, pass);
-        promise.catch(e => console.log(e.message));
-        //Remove later!!!
-        console.log(pass);
+        auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
+            if (error.code){
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+            console.log(errorMessage);
+        }
+        else{
+            console.log('successfuly authenticated');
+            var ref = firebase.database().ref();
+            var userRef = ref.child('users');
+            var newUserRef = ref.child('users').push();
+            var key = newUserRef.key;
+
+            newUserRef.once('value', function(snapshot) {
+                if (snapshot.hasChild(user.uid)) {
+                    alert('exists already');
+                } else {
+            var userInfo = {
+                id: key,
+                uid: user.uid,
+                email: user.email
+            }
+            newUserRef.set(userInfo);
+                }
+            })
+        }
+        });
+
+        // const promise = auth.createUserWithEmailAndPassword(email, pass);
+        // promise.catch(e => console.log(e.message));
     });
 
     btnLogout.addEventListener('click', e => {
@@ -35,15 +63,41 @@
     });
 
     // Add a realtime listener
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser) {
-            console.log(firebaseUser);
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+            // usersRef.once('value', function(snapshot) {
+            //   if (snapshot.hasChild(theDataToAdd)) {
+            //     alert('exists');
+            //   }
+            // });
+            var ref = firebase.database().ref();
+            var userRef = ref.child('users');
+            var newUserRef = ref.child('users').push();
+            var key = newUserRef.key;
+
+            newUserRef.once('value', function(snapshot) {
+                if (snapshot.hasChild(user.uid)) {
+                    alert('exists already');
+                } else {
+            var userInfo = {
+                id: key,
+                uid: user.uid,
+                email: user.email
+            }
+            newUserRef.set(userInfo);
+                }
+            })
+
+            console.log(user);
             btnLogout.classList.remove('hide');
             userSet.classList.remove('hide');
             txtEmail.classList.add('hide');
             txtPassword.classList.add('hide');
             btnLogin.classList.add('hide');
             btnSignUp.classList.add('hide');
+            // var uid = firebaseUser.uid;
+            // console.log(uid);
+            // const userRef = firebase.database().ref().child('users/' + uid);
         } else {
             console.log('not logged in');
             userSet.classList.add('hide');
@@ -71,11 +125,15 @@ function submitClick() {
     dbRef.push().set(messageText);
 };
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user.uid);
-  }
-});
+
+// document.onload = firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log(user.uid);
+//     var uid = user.uid;
+//     var userRef = firebase.storage().ref(uid);
+//     var photosRef = userRef.child('photos');
+//   }
+// });
 
 // var user = firebase.auth().currentUser;
 // var name, email, photoUrl, uid, emailVerified;
