@@ -1,4 +1,6 @@
-// var storage = firebase.storage();
+var auth = firebase.auth();
+var storage = firebase.storage();
+var database = firebase.database();
 
 // // Points to the root reference
 // var storageRef = firebase.storage().ref();
@@ -104,31 +106,20 @@
 //   var downloadURL = uploadTask.snapshot.downloadURL;
 // });
 
-
-
 var uploader = document.getElementById('uploader');
 var fileButton = document.getElementById('fileButton');
+var artistName = document.getElementById('inputArtist');
+var artDate = document.getElementById('inputDate');
+var uploadBtn = document.getElementById('uploadImg');
+var downUrl = "";
 
-fileButton.addEventListener('change', function (e) {
-    //Get file
+fileButton.addEventListener('change', e=> {
     var file = e.target.files[0];
-    //Create a storage ref
-    var storageRef = firebase.storage().ref('photos/' + file.name);
-    //Upload File
+    var storageRef = storage.ref('photos/' + file.name);
     var uploadTask = storageRef.put(file);
-    //Update the progress bar
     uploadTask.on('state_changed', 
-        function progress(snapshot) {
+         function progress(snapshot) {
             var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            // var metadata = uploadTask.snapshot.metadata;
-            // var downloadURL = uploadTask.snapshot.downloadURL;
-            // var fileRecord = {
-            //     downloadURL: downloadURL,
-            //     metadata: {
-            //         fullPath: metadata.fullPath,
-            //         name: metadata.name
-            //     }
-            // };
             uploader.value = percentage;
         },
         function error(err) {
@@ -136,23 +127,81 @@ fileButton.addEventListener('change', function (e) {
         },
         function complete() {
             console.log('complete');
-            showimage(file);
-        }
-    );
+            // showimage(file);
+        })
+    storageRef.getDownloadURL().then(function (url) {
+        downUrl = url;
+        console.log(downUrl);
+    })
 });
 
-function showimage(e) {
-    var storageRef = firebase.storage().ref();
-    var spaceRef = storageRef.child('photos/' + e.name);
-    document.getElementById('photoBox').classList.remove('hide');
-    storageRef.child('photos/' + e.name).getDownloadURL().then(function(url) {
-        var test = url;
-        console.log(url);
-        document.getElementById('photoBox').src = test;
-    }).catch(function(error) {
-        console.log('show Image error')
-    });
-}
+uploadBtn.addEventListener('click', function() {
+    auth.onAuthStateChanged(function (user) {
+        var uid = user.uid;
+        var artist = artistName.value;
+        var date = artDate.value;
+        var databaseRef = database.ref().child('users').child(uid).child('posts');
+        var information = {
+            email: user.email,
+            uid: uid,
+            url: downUrl,
+            artist: artist,
+            date: date
+        }
+        databaseRef.push(information);
+    }) 
+})
+
+
+// fileButton.addEventListener('change', function(e) {
+//     auth.onAuthStateChanged(function (user) {
+//             var file = e.target.files[0];
+//             var storageRef = storage.ref('photos/' + file.name);
+//             var uploadTask = storageRef.put(file);
+//             uploadTask.on('state_changed', 
+//                 function progress(snapshot) {
+//                     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//                     // var metadata = uploadTask.snapshot.metadata;
+//                     // var downloadURL = uploadTask.snapshot.downloadURL;
+//                     // var fileRecord = {
+//                     //     downloadURL: downloadURL,
+//                     //     metadata: {
+//                     //         fullPath: metadata.fullPath,
+//                     //         name: metadata.name
+//                     //     }
+//                     // };
+//                     uploader.value = percentage;
+//                 },
+//                 function error(err) {
+//                     console.log('uploadTask error')
+//                 },
+//                 function complete() {
+//                     console.log('complete');
+//                     // showimage(file);
+//                 }
+//             );
+//         var uid = user.uid;
+//         var databaseRef = database.ref().child('users').child(uid).child('posts');
+//         var downUrl = storageRef.getDownloadURL();
+//         databaseRef.push(downUrl);
+//         databaseRef.push(artistName);
+//         databaseRef.push(date);
+//         }
+//     )});
+
+// function showimage(e) {
+//     var storageRef = firebase.storage().ref();
+//     var spaceRef = storageRef.child('photos/' + e.name);
+//     document.getElementById('photoBox').classList.remove('hide');
+//     storageRef.child('photos/' + e.name).getDownloadURL().then(function(url) {
+//         var test = url;
+//         console.log(url);
+//         document.getElementById('photoBox').src = test;
+//     }).catch(function(error) {
+//         console.log('show Image error')
+//     });
+// }
+
 
 // document.onload = function feedImage() {
 //     var storageRef = firebase.storage().ref();
@@ -167,3 +216,16 @@ function showimage(e) {
 //         console.log('feedImage error');
 //     });
 // }
+
+
+// var storage    = firebase.storage();
+// var storageRef = storage.ref();
+// var spaceRef = storageRef.child('images/photo_1.png');
+
+// storageRef.child('images/photo_1.png').getDownloadURL().then(function(url) {
+//     var feedImg = document.getElementById('feedImg');
+//     var imgUrl = url;
+//     feedImg.src = imgUrl;
+// }).catch(function(error) {
+//     console.log('error');
+// });

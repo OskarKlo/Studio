@@ -39,9 +39,24 @@
                 name: name,
                 uid: user.uid,
                 email: user.email,
-                pass: pass
+                pass: pass,
+                followers: {
+                    uid: true,
+                    uid: true
+                },
+                following: {
+                    uid: true,
+                    uid: true
+                },
+                posts: {
+                    postId: {
+                        like_count: 0,
+                        location: "mexico",
+                        artist: "joe",
+                        date: "5.1.17"
+                    }
+                }
             }
-
             userRef.set(userInfo);
         });
     });
@@ -81,35 +96,30 @@
 //Pop Up window script
 
 // Get the modal
-var modal = document.getElementById('myModal');
+// var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// // Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-//close window function
-// btnSignUp.onclick = function() {
-//     modal.style.display.close();
+// // When the user clicks the button, open the modal 
+// btn.onclick = function() {
+//     modal.style.display = "block";
 // }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+// }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
 
 //End of PopUp
 
@@ -158,17 +168,18 @@ var auth = firebase.auth();
     }
 });
 
-function fetchUser() {
-//     commentsRef.on('child_added', function(data) {
-//   addCommentElement(postElement, data.key, data.val().text, data.val().author);
+// function fetchUser() {
+// //     commentsRef.on('child_added', function(data) {
+// //   addCommentElement(postElement, data.key, data.val().text, data.val().author);
+// // });
+// var userRef = firebase.database().ref().child('users');
+// userRef.on('child_added', function(snapshot) {
+//     console.log(snapshot);
+//     var listUsersWithInfo = snapshot.val();
+//     console.log(listUsersWithInfo);
 // });
-var userRef = firebase.database().ref().child('users');
-userRef.on('child_added', function(snapshot) {
-    console.log(snapshot);
-    var listUsersWithInfo = snapshot.val();
-    console.log(listUsersWithInfo);
-});
-}
+// }
 
-fetchUser();
+// fetchUser();
+
 
