@@ -94,6 +94,11 @@ btn.onclick = function() {
     modal.style.display = "block";
 }
 
+//close window function
+// btnSignUp.onclick = function() {
+//     modal.style.display.close();
+// }
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
@@ -145,7 +150,8 @@ var auth = firebase.auth();
             var userName = document.getElementById('userName');
             var usersId = userDict['uid'];
             var usersEmail = userDict['email'];
-            userName.innerHTML = "Hello " + usersEmail;
+            var users_name = userDict['name'];
+            userName.innerHTML = "Hello " + users_name;
         })
     } else {
         console.log("There has been an error calling the user unique dictionary!");
