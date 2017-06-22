@@ -30,8 +30,6 @@
             console.log(uid);
             var ref = firebase.database().ref();
             var userRef = ref.child('users').child(uid);
-            // var newUserRef = ref.child('users').child(uid).push();
-            // var key = newUserRef.key;
             
             var userInfo = {
                 uid: user.uid,
@@ -39,25 +37,8 @@
                 pass: pass
             }
 
-            // userRef.updateChildValues(userInfo);
-
             userRef.set(userInfo);
-
-            // newUserRef.once('value', function(snapshot) {
-            //     if (snapshot.hasChild(user.uid)) {
-            //         alert('exists already');
-            //     } else {
-            // var userInfo = {
-            //     id: key,
-            //     uid: user.uid,
-            //     email: user.email
-            // }
-            //     }
-            // });
         });
-
-        // const promise = auth.createUserWithEmailAndPassword(email, pass);
-        // promise.catch(e => console.log(e.message));
     });
 
     btnLogout.addEventListener('click', e => {
@@ -67,29 +48,6 @@
     // Add a realtime listener
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
-            // usersRef.once('value', function(snapshot) {
-            //   if (snapshot.hasChild(theDataToAdd)) {
-            //     alert('exists');
-            //   }
-            // });
-            var ref = firebase.database().ref();
-            var userRef = ref.child('users');
-            var newUserRef = ref.child('users').push();
-            var key = newUserRef.key;
-
-            newUserRef.once('value', function(snapshot) {
-                if (snapshot.hasChild(user.uid)) {
-                    alert('exists already');
-                } else {
-            var userInfo = {
-                id: key,
-                uid: user.uid,
-                email: user.email
-            }
-            newUserRef.set(userInfo);
-                }
-            })
-
             console.log(user);
             btnLogout.classList.remove('hide');
             userSet.classList.remove('hide');
@@ -128,24 +86,22 @@ function submitClick() {
 };
 
 
-// document.onload = firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     console.log(user.uid);
-//     var uid = user.uid;
-//     var userRef = firebase.storage().ref(uid);
-//     var photosRef = userRef.child('photos');
-//   }
-// });
 
-// var user = firebase.auth().currentUser;
-// var name, email, photoUrl, uid, emailVerified;
+// var items = ['item1', 'item2', 'item3'];
+// var copy = [];
 
-// if (user != null) {
-//   name = user.displayName;
-//   email = user.email;
-//   photoUrl = user.photoURL;
-//   emailVerified = user.emailVerified;
-//   uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-//                    // this value to authenticate with your backend server, if
-//                    // you have one. Use User.getToken() instead.
+// for (var i=0; i<items.length; i++) {
+//   copy.push(items[i])
 // }
+
+var auth = firebase.auth();
+ auth.onAuthStateChanged(function(user) {
+    console.log('authStateChanged', user);
+    if (user) {
+        var userRef = firebase.database().ref().child('users').child(user.uid);
+        userRef.on('value', function (snapshot) {
+            console.log(snapshot + "snapshot!!!");
+            var userDict = snapshot.val();
+            console.log(userDict);
+        })
+    }});
