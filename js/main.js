@@ -7,6 +7,10 @@
     const btnSignUp = document.getElementById('btnSignUp');
     const btnLogout = document.getElementById('btnLogout');
     const userSet = document.getElementById("userSettings");
+    const textEmail = document.getElementById('textEmail');
+    const textName = document.getElementById('textName');
+    const textPass = document.getElementById('textPassword');
+    const btnRegister = document.getElementById('myBtn');
 
     //Login Event
     btnLogin.addEventListener('click', e => {
@@ -20,8 +24,9 @@
 
     //SignUp event
     btnSignUp.addEventListener('click', e => {
-        const email = txtEmail.value;
-        const pass = txtPassword.value;
+        const email = textEmail.value;
+        const pass = textPass.value;
+        const name = textName.value;
         const auth = firebase.auth();
         //Sign In
         auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
@@ -30,8 +35,8 @@
             console.log(uid);
             var ref = firebase.database().ref();
             var userRef = ref.child('users').child(uid);
-            
             var userInfo = {
+                name: name,
                 uid: user.uid,
                 email: user.email,
                 pass: pass
@@ -54,7 +59,8 @@
             txtEmail.classList.add('hide');
             txtPassword.classList.add('hide');
             btnLogin.classList.add('hide');
-            btnSignUp.classList.add('hide');
+            // btnSignUp.classList.add('hide');
+            btnRegister.classList.add('hide');
             // var uid = firebaseUser.uid;
             // console.log(uid);
             // const userRef = firebase.database().ref().child('users/' + uid);
@@ -66,6 +72,7 @@
             txtPassword.classList.remove('hide');
             btnLogin.classList.remove('hide');
             btnSignUp.classList.remove('hide');
+            btnRegister.classList.remove('hide');
         }
     });
 
