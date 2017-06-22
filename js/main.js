@@ -24,34 +24,36 @@
         const pass = txtPassword.value;
         const auth = firebase.auth();
         //Sign In
-        auth.createUserWithEmailAndPassword(email, pass).catch(function(error) {
-            if (error.code){
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(errorMessage);
-            console.log(errorMessage);
-        }
-        else{
+        auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
             console.log('successfuly authenticated');
+            var uid = user.uid;
+            console.log(uid);
             var ref = firebase.database().ref();
-            var userRef = ref.child('users');
-            var newUserRef = ref.child('users').push();
-            var key = newUserRef.key;
-
-            newUserRef.once('value', function(snapshot) {
-                if (snapshot.hasChild(user.uid)) {
-                    alert('exists already');
-                } else {
+            var userRef = ref.child('users').child(uid);
+            // var newUserRef = ref.child('users').child(uid).push();
+            // var key = newUserRef.key;
+            
             var userInfo = {
-                id: key,
                 uid: user.uid,
-                email: user.email
+                email: user.email,
+                pass: pass
             }
-            newUserRef.set(userInfo);
-                }
-            })
-        }
+
+            // userRef.updateChildValues(userInfo);
+
+            userRef.set(userInfo);
+
+            // newUserRef.once('value', function(snapshot) {
+            //     if (snapshot.hasChild(user.uid)) {
+            //         alert('exists already');
+            //     } else {
+            // var userInfo = {
+            //     id: key,
+            //     uid: user.uid,
+            //     email: user.email
+            // }
+            //     }
+            // });
         });
 
         // const promise = auth.createUserWithEmailAndPassword(email, pass);
