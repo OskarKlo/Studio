@@ -28,6 +28,8 @@
     		<button id="btnLogin" class="btn btn-action allignRight loginButton">Log In</button>
 			<button id="btnSignUp" class="btn btn-secondary allignRight signUpButton">Sign Up</button>
 			<button id="btnLogout" class="btn btn-action hide allignRight logoutButton">Log Out</button>
+			<!-- Trigger/Open The Modal - Pop Up Window -->
+			<button id="myBtn" class="btn btn-primary allignLeft">Register</button>
 		</div>
 	</nav>
 
@@ -41,8 +43,19 @@
 		<p id="likeCount"></p>
 		<button id='addLike'>Like</button>
 		<button id='removeLike'>Unlike</button>
-		<progress value="0" max="100" id="uploader">0%</progress>
-		<input type="file" value="upload" id="fileButton" />
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+					<input id="txtName" class="pop-up-input" type="name" placeholder="Name">
+					<input id="txtEmail" class="pop-up-input" type="email" placeholder="Email">
+					<input id="txtPassword" class="pop-up-input" type="password" placeholder="Password">
+					<button id="btnSignUp" class="btn btn-secondary signUpButton">Sign Up</button>
+			</div>
+		</div>
+
 		<!--<input type="button" value ="view Image" id="viewbtn" onclick="showimage();">
     	<img id="photoBox" class="hide" src="test" height="125px" width="200px"/> -->
         <!--<p><a id="addTree" class="btn btn-primary btn-lg trial" href="#" role="button">ADD &raquo;</a></p>-->
