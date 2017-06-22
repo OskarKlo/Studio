@@ -103,5 +103,25 @@ var auth = firebase.auth();
             console.log(snapshot + "snapshot!!!");
             var userDict = snapshot.val();
             console.log(userDict);
+            var userName = document.getElementById('userName');
+            var usersId = userDict['uid'];
+            var usersEmail = userDict['email'];
+            userName.innerHTML = "Hello " + usersEmail;
         })
-    }});
+    } else {
+        console.log("There has been an error calling the user unique dictionary!");
+    }
+});
+
+function fetchUser() {
+//     commentsRef.on('child_added', function(data) {
+//   addCommentElement(postElement, data.key, data.val().text, data.val().author);
+// });
+var userRef = firebase.database().ref().child('users');
+userRef.on('child_added', function(snapshot) {
+    console.log(snapshot);
+});
+}
+
+fetchUser();
+
