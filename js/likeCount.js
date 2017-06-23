@@ -17,16 +17,22 @@ var database = firebase.database();
 //   return (current_value || 0) + 1;
 // });
 
-const dbRefPosts = firebase.database().ref().child('posts');
-const dbRefPost = dbRefPosts.child('post-id');
-const dbRefLikeList = dbRefPost.child('likes');
-const dbRefLikeCount = dbRefPost.child('like_count');
+// const dbRefPosts = database.ref().child('posts');
+// const dbRefPost = dbRefPosts.child('post-id');
+// // const dbRefLikeList = dbRefPost.child('likes');
+// const dbRefLikeCount = dbRefPost.child('like_count');
 const likeButton = document.getElementById('addLike');
 const unlikeButton = document.getElementById('removeLike');
+const likeCountDisplay = document.getElementById('likeCountDisplay');
+
+// Switched to the new strucutre ensure the post-id ref child(zero)
+const dbRefPosts = database.ref().child('users').child(uid).child('posts');
+const dbRefPost = dbRefPosts.child();
+const dbRefLikeCount = dbRefPost.child('like_count');
+
 // const numLikes = document.getElementById('likeCount');
 unlikeButton.addEventListener('click', e => {
     console.log('unlike clicked');
-    // dbRefLikeList.child('likes').remove(e);
     dbRefLikeCount.transaction(function (current_value) {
   return (current_value || 0) - 1;
 });
@@ -34,8 +40,16 @@ unlikeButton.addEventListener('click', e => {
 
 likeButton.addEventListener('click', e => {
     console.log('like clicked');
-    // dbRefLikeList.push("true");
     dbRefLikeCount.transaction(function (current_value) {
   return (current_value || 0) + 1;
 });
 })
+
+
+// When like_count changes innerHTML of like_count updates!
+likeButton.addEventListener('change', e => {
+    var likeCount = dbRefLikeCount.current_value();
+    likeCountDisplay.innerHTML = likeCount;
+    console.log('likeCountChanged');
+})
+

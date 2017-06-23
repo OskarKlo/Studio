@@ -36,7 +36,6 @@
 	<div class="jumbotron">
       <div class="container">
         <h1 id="userName" class="display-3">Most Popular</h1>
-		<p id="likeCount"></p>
 		<button id='addLike'>Like</button>
 		<button id='removeLike'>Unlike</button>
 
@@ -79,6 +78,9 @@
                     <img id="post-id" class="img-responsive" src="http://placehold.it/700x450" alt="">
                     <div class="caption">
 						<small class="allignLeft"><i class="fa fa-heart" aria-hidden="true"></i></small>
+						<small><p id="likeCountDisplay"></p>
+						<small><button id='addLike'>+</button></small>
+						<small><button id='removeLike'>-</button></small>
 						<small class="allignLeft">#</small>
                         <small class="allignRight">Lower East Side of Manhattan</small>
                     </div>
@@ -174,5 +176,6 @@
 <script src="js/jquery-3.2.1.js"></script>
 <script src="https://use.fontawesome.com/057b8f46a6.js"></script>
 <script src="js/main.js"></script>
+<script src="js/imgLoad.js"></script>
 </body>
 </html>
