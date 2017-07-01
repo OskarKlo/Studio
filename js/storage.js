@@ -2,9 +2,10 @@ var uploader = document.getElementById('uploader');
 var fileButton = document.getElementById('fileButton');
 var artistName = document.getElementById('inputArtist');
 var artLocation = document.getElementById('inputLocation');
+// const uploadBtn = document.getElementById('uploadInfo');
 // var artDate = document.getElementById('inputDate');
-var uploadBtn = document.getElementById('uploadImg');
-var downUrl = "";
+// var uploadBtn = document.getElementById('uploadImg');
+var downUrl;
 
 fileButton.addEventListener('change', e=> {
     var file = e.target.files[0];
@@ -32,14 +33,17 @@ fileButton.addEventListener('change', e=> {
         })
 });
 
-uploadBtn.addEventListener('click', function() {
-    function addArtistInfo() {
-        artist = artistName.value;
-        location = artLocation.value;
-        console.log(artist);
-        console.log(location);
+function addArtInfo() {
+    artistName = artistName.value;
+    artLocation = artLocation.value;
+    postsRef = database.ref().child('users').child(uid).child('posts');
+    var artistInfo = {
+        artist: artistName,
+        location: artLocation,
+        downloadUrl: downUrl
     }
-})
+    postsRef.push(artistInfo);
+}
 
 // uploadBtn.addEventListener('click', function() {
 //     auth.onAuthStateChanged(function (user) {

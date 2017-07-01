@@ -55,7 +55,7 @@ body {
 }
 
 .enjoy-css {
-  display: inline-block;
+  /*display: inline-block;*/
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -82,7 +82,7 @@ body {
 }
 
 .loginButton {
-    display: inline-block;
+    /*display: inline-block;*/
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -109,7 +109,7 @@ body {
 }
 
 .signUpButton {
-    display: inline-block;
+    /*display: inline-block;*/
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -136,7 +136,7 @@ body {
 }
 
 .logoutButton {
-     display: inline-block;
+     /*display: inline-block;*/
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -201,7 +201,7 @@ body {
 }
 
 .pop-up-input {
-  display: inline-block;
+  /*display: inline-block;*/
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;

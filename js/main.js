@@ -13,6 +13,8 @@ var database = firebase.database();
     const textPass = document.getElementById('textPassword');
     const btnRegister = document.getElementById('myBtn');
 
+var uid;
+
     //Login Event
     btnLogin.addEventListener('click', e => {
         const email = txtEmail.value;
@@ -70,6 +72,7 @@ var database = firebase.database();
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
             console.log(user);
+            uid = user.uid;
             btnLogout.classList.remove('hide');
             userSet.classList.remove('hide');
             txtEmail.classList.add('hide');
@@ -88,6 +91,7 @@ var database = firebase.database();
             btnRegister.classList.remove('hide');
         }
     });
+
 
     //End of Auth
 
