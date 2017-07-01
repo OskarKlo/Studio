@@ -1,5 +1,6 @@
-
-    var database = firebase.database();
+var auth = firebase.auth();
+var storage = firebase.storage();
+var database = firebase.database();
 
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
@@ -27,8 +28,8 @@
         const email = textEmail.value;
         const pass = textPass.value;
         const name = textName.value;
-        const auth = firebase.auth();
-        //Sign In
+        // const auth = firebase.auth();
+        //Create User
         auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
             console.log('successfuly authenticated');
             var uid = user.uid;
@@ -76,9 +77,6 @@
             btnLogin.classList.add('hide');
             // btnSignUp.classList.add('hide');
             btnRegister.classList.add('hide');
-            // var uid = firebaseUser.uid;
-            // console.log(uid);
-            // const userRef = firebase.database().ref().child('users/' + uid);
         } else {
             console.log('not logged in');
             userSet.classList.add('hide');
@@ -96,36 +94,36 @@
 //Pop Up window script
 
 // Get the modal
-// var modal = document.getElementById('myModal');
+var modal = document.getElementById('myModal');
 
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-// // When the user clicks the button, open the modal 
-// btn.onclick = function() {
-//     modal.style.display = "block";
-// }
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
 
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//     modal.style.display = "none";
-// }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 //End of PopUp
 
 
 
-    const mainText = document.getElementById("mainText");
+const mainText = document.getElementById("mainText");
 const submitBtn = document.getElementById("saveText"); 
 
 // var database = firebase.database();
@@ -148,25 +146,25 @@ function submitClick() {
 //   copy.push(items[i])
 // }
 
-var auth = firebase.auth();
- auth.onAuthStateChanged(function(user) {
-    console.log('authStateChanged', user);
-    if (user) {
-        var userRef = firebase.database().ref().child('users').child(user.uid);
-        userRef.on('value', function (snapshot) {
-            console.log(snapshot + "snapshot!!!");
-            var userDict = snapshot.val();
-            console.log(userDict);
-            var userName = document.getElementById('userName');
-            var usersId = userDict['uid'];
-            var usersEmail = userDict['email'];
-            var users_name = userDict['name'];
-            userName.innerHTML = "Hello " + users_name;
-        })
-    } else {
-        console.log("There has been an error calling the user unique dictionary!");
-    }
-});
+// var auth = firebase.auth();
+//  auth.onAuthStateChanged(function(user) {
+//     console.log('authStateChanged', user);
+//     if (user) {
+//         var userRef = firebase.database().ref().child('users').child(user.uid);
+//         userRef.on('value', function (snapshot) {
+//             console.log(snapshot + "snapshot!!!");
+//             var userDict = snapshot.val();
+//             console.log(userDict);
+//             var userName = document.getElementById('userName');
+//             var usersId = userDict['uid'];
+//             var usersEmail = userDict['email'];
+//             var users_name = userDict['name'];
+//             userName.innerHTML = "Hello " + users_name;
+//         })
+//     } else {
+//         console.log("There has been an error calling the user unique dictionary!");
+//     }
+// });
 
 // function fetchUser() {
 // //     commentsRef.on('child_added', function(data) {

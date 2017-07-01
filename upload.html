@@ -26,10 +26,24 @@
 			<input id="txtEmail" class="enjoy-css allignRight" type="email" placeholder="Email">
 			<input id="txtPassword" class="enjoy-css allignRight" type="password" placeholder="Password">
     		<button id="btnLogin" class="btn btn-action allignRight loginButton">Log In</button>
-			<button id="btnSignUp" class="btn btn-secondary allignRight signUpButton">Sign Up</button>
+			<!--<button id="btnSignUp" class="btn btn-secondary allignRight signUpButton">Sign Up</button>-->
 			<button id="btnLogout" class="btn btn-action hide allignRight logoutButton">Log Out</button>
+			<!-- Trigger/Open The Modal - Pop Up Window -->
+			<button id="myBtn" class="btn btn-primary allignLeft">Register</button>
 		</div>
 	</nav>
+
+	<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+					<input id="textName" class="pop-up-input" type="name" placeholder="Name">
+					<input id="textEmail" class="pop-up-input" type="email" placeholder="Email">
+					<input id="textPassword" class="pop-up-input" type="password" placeholder="Password">
+					<button id="btnSignUp" class="btn btn-secondary signUpButton">Sign Up</button>
+			</div>
+		</div>
 
 <!-- Page Content --> 
 <div class="container">
@@ -43,25 +57,26 @@
 					<input class="btn btn-sm btn-secondary btn-block" type="file" value="upload" id="fileButton" />
 					<progress value="0" max="100" id="uploader">0%</progress>
 					<input type="text" id="inputArtist" class="form-control" placeholder="Artist">
-					<input type="text" id="inputDate" class="form-control" placeholder="Last Seen">
+					<input type="text" id="inputLocation" class="form-control" placeholder="Location">
+					<!--<input type="text" id="inputDate" class="form-control" placeholder="Last Seen">-->
 					<!--<input type="text" id="inputLocation" class="form-control" placeholder="Location">-->
-					<div class="checkbox">
+					<!--<div class="checkbox">
 					<label>
 						<input type="checkbox" value="remember-me"> Terms and Conditions
 					</label>
-					</div>
-					<label for="condition">Condition</label>
+					</div>-->
+					<!--<label for="condition">Condition</label>
 					<select id="condition" placeholder="Condition">
 						<option value="Awesome">Awesome</option>
 						<option value="Good">Good</option>
 						<option value="Mild">Mild</option>
 						<option value="Poor">Poor</option>
-					</select>
+					</select>-->
 					<button id="uploadImg" class="btn btn-sm btn-primary btn-block" type="submit">Upload</button>
 				</form>
             </div>
             <div class="col-md-6">
-                <img class="hide img-responsive" id="photoBox" src="test">
+                <img class="hide img-responsive" id="photoBox">
             </div>
         </div>
 
