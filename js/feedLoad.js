@@ -1,14 +1,15 @@
 loadFeed = document.getElementById('loadToFeed');
 auth = firebase.auth();
-var postsRef;
+
 auth.onAuthStateChanged(user => {
     var uid = user.uid;
     postsRef = firebase.database().ref().child('users').child(uid).child('posts');
-})
+    // artistName = postsRef.orderByChild('artist');
+    // console.log(artistName);
+    postsRef.orderByChild('artist').on('value', function(snapshot) {
+    console.log(snapshot);
+    // artistName = snapshot[artist];
+    // console.log(artistName);
+})})
 
 // ref.child('users').orderByChild('name').equalTo('Alex').on('child_added',  ...)
-
-postsRef.orderByChild('downloadUrl').on('child_added', e => {
-    downloadUrl = e.value;
-    console.log(downloadUrl);
-})
