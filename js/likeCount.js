@@ -17,10 +17,6 @@ var database = firebase.database();
 //   return (current_value || 0) + 1;
 // });
 
-// const dbRefPosts = database.ref().child('posts');
-// const dbRefPost = dbRefPosts.child('post-id');
-// // const dbRefLikeList = dbRefPost.child('likes');
-// const dbRefLikeCount = dbRefPost.child('like_count');
 const likeButton = document.getElementById('addLike');
 const unlikeButton = document.getElementById('removeLike');
 const likeCountDisplay = document.getElementById('likeCountDisplay');

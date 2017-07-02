@@ -16,6 +16,8 @@ var database = firebase.database();
 var uid;
 
 var today = new Date();
+var hh = today.getHours();
+var tt = today.getSeconds();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
@@ -28,7 +30,7 @@ if(mm<10) {
     mm = '0'+mm
 } 
 
-today = mm + '/' + dd + '/' + yyyy;
+today = hh + ':' + tt + '|' + mm + '/' + dd + '/' + yyyy;
 console.log(today);
 
     //Login Event
@@ -77,6 +79,7 @@ console.log(today);
                 }
             }
             userRef.set(userInfo);
+            closeWindow();
         });
     });
 
@@ -132,12 +135,11 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+//Close Window Pop-UP
+function closeWindow() {
+    modal.style.display = "none";
+};
+
 
 //End of PopUp
 

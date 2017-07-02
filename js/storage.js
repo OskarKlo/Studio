@@ -40,10 +40,13 @@ function addArtInfo() {
     var artistInfo = {
         artist: artistName,
         location: artLocation,
-        downloadUrl: downUrl
+        downloadUrl: downUrl,
+        like_count: 0
     }
     postsRef.push(artistInfo);
 }
+
+// var likeCountRef = firebase.database().ref().child('users').child(uid).child('posts').orderByChild('like_count');
 
 // uploadBtn.addEventListener('click', function() {
 //     auth.onAuthStateChanged(function (user) {
