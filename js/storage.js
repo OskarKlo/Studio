@@ -2,6 +2,7 @@ var uploader = document.getElementById('uploader');
 var fileButton = document.getElementById('fileButton');
 var artistName = document.getElementById('inputArtist');
 var artLocation = document.getElementById('inputLocation');
+var uploadInfo = document.getElementById('uploadImg');
 // const uploadBtn = document.getElementById('uploadInfo');
 // var artDate = document.getElementById('inputDate');
 // var uploadBtn = document.getElementById('uploadImg');
@@ -33,7 +34,7 @@ fileButton.addEventListener('change', e=> {
         })
 });
 
-function addArtInfo() {
+uploadInfo.addEventListener('click', e => {
     artistName = artistName.value;
     artLocation = artLocation.value;
     postsRef = database.ref().child('users').child(uid).child('posts');
@@ -44,7 +45,7 @@ function addArtInfo() {
         like_count: 0
     }
     postsRef.push(artistInfo);
-}
+})
 
 // var likeCountRef = firebase.database().ref().child('users').child(uid).child('posts').orderByChild('like_count');
 
