@@ -226,3 +226,7 @@ body {
   -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
   transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+#introTrending {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/studio-8a79b.appspot.com/o/photos%2Fimg01.jpg?alt=media&token=6e9b4396-3f85-482d-b620-076c8a21c317");
+    background-size: cover;
+}
