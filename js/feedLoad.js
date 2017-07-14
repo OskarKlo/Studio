@@ -44,6 +44,24 @@ function feedLoad() {
 //             console.log(child.val()) // NOW THE CHILDREN PRINT IN ORDER
 //         });
 
+function img_create(src, artist, likes) {
+    var div = document.createElement('div');
+    var img = document.createElement('img');
+    var artistName = document.createElement('p');
+    // var likes = document.createElement('p');
+    var like_count = document.createElement('small');
+    artistName.innerHTML = artist;
+    like_count.innerHTML = likes;
+    img.src = src;
+    img.width = '700';
+    img.height = '450';
+    div.appendChild(img);
+    div.appendChild(artistName);
+    div.appendChild(like_count);
+    document.body.appendChild(div);
+    return img;
+}
+
 function loadImg() {
     auth.onAuthStateChanged(user => {
         var uid = user.uid;
@@ -53,13 +71,18 @@ function loadImg() {
             snapshot.forEach(function(child) {
                 console.log(child.val())
                 child = child.val();
+                artistName = child['artist'];
+                likes = child['like_count'];
                 downloadUrl = child['downloadUrl'];
                 console.log(downloadUrl);
-                var createImg = document.createElement('IMG');
-                document.body.appendChild(createImg); 
-                createImg.classList.add('feedImg');
-                var feedImg = document.getElementsByClassName('feedImg');
-                feedImg.src = downloadUrl;
+                console.log(artistName);
+                console.log(likes);
+                img_create(downloadUrl, artistName, likes);
+                // var createImg = document.createElement('IMG');
+                // document.body.appendChild(createImg); 
+                // createImg.classList.add('feedImg');
+                // var feedImg = document.getElementsByClassName('feedImg');
+                // feedImg.src = downloadUrl;
             });
         });
 
