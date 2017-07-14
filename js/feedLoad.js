@@ -1,5 +1,6 @@
 loadFeed = document.getElementById('loadToFeed');
 auth = firebase.auth();
+database = firebase.database();
 
 // auth.onAuthStateChanged(user => {
 //     var uid = user.uid;
@@ -44,40 +45,98 @@ function feedLoad() {
 //             console.log(child.val()) // NOW THE CHILDREN PRINT IN ORDER
 //         });
 
+// likeButton.addEventListener('change', e => {
+//     var likeCount = dbRefLikeCount.current_value();
+//     likeCountDisplay.innerHTML = likeCount;
+//     console.log('likeCountChanged');
+// })
 
+// document.getElementsByClassName('likeBtn').addEventListener('change', e => {
+//         likes = like_countPostRef.current_value();
+//         likeDisplay.innerHTML = likes;
+//     });
+// document.getElementsByClassName('unlikeBtn').addEventListener('change', e => {
+//         likes = like_countPostRef.current_value();
+//         likeDisplay.innerHTML = likes;
+//     });
 
-function img_create(src, artist, likes, location) {
+// var theOddOnes = document.getElementsByClassName("odd");
+//                 for(var i=0; i<theOddOnes.length; i++)
+//                 {
+//                     alert(theOddOnes[i].innerHTML);
+//                 }
+
+// likeBtn.onclick = function() {
+//         like_countPostRef.transaction(function (current_value) {
+//             return (current_value || 0) + 1;
+//         });
+//     };
+
+// function updateLikes() {
+//     auth.onAuthStateChanged(user => {
+//         var uid = user.uid;
+//         var ref = database.ref().child('users').child(uid).child('posts');
+//         ref.orderByChild('like_count').on('value', function (snapshot) {
+//             snapshot.forEach(function(child) {
+//                 child = child.val();
+//                 var like_count = child['like_count'];
+//                 likeDisplay.innerHTML = like_count;
+//             })
+//         })
+//     })
+// };
+
+// setTimeout(updateLikes, 400);
+
+// like_countPostRef.on('child_changed', function (snapshot) {
+//         var likes = snapshot.val();
+//         likeDisplay.innerHTML = likes;
+//     })
+
+function img_create(src, artist, likes, key) {
+    var uniqueId = makeid();
+    var like_countPostRef = database.ref().child('users').child(uid).child('posts').child(key).child('like_count');
     var rowDiv = document.createElement('div');
     var captionDiv = document.createElement('div');
     var img = document.createElement('img');
     var artistName = document.createElement('small');
-    var like = document.createElement('button');
+    var likeBtn = document.createElement('button');
     var unlike = document.createElement('button');
-    like.innerHTML = "Like";
+    likeBtn.innerHTML = "Like";
     unlike.innerHTML = "Unlike";
     var heart = document.createElement('small');
     var heartIcon = document.createElement('i');
-    var like_count = document.createElement('small');
+    var likeDisplay = document.createElement('small');
+    // likeBtn.onclick = function() {
+    //     like_countPostRef.transaction(function (current_value) {
+    //         return (current_value || 0) + 1;
+    //     });
+    // };
+    // unlike.onclick = function() {
+    //     like_countPostRef.transaction(function (current_value) {
+    //         return (current_value || 0) - 1;
+    //     });
+    // };
+    likeDisplay.innerHTML = likes;
     artistName.innerHTML = artist;
-    like_count.innerHTML = likes;
     img.src = src;
-    img.width = '500';
-    img.height = '350';
-    captionDiv.appendChild(like);
+    img.width = '600';
+    img.height = '450';
+    captionDiv.appendChild(likeBtn);
     captionDiv.appendChild(unlike);
     rowDiv.appendChild(img);
     rowDiv.appendChild(captionDiv);
     captionDiv.appendChild(heart);
     heart.appendChild(heartIcon);
     captionDiv.appendChild(artistName);
-    captionDiv.appendChild(like_count);
+    captionDiv.appendChild(likeDisplay);
     document.body.appendChild(rowDiv);
-    unlike.classList.add("allignLeft");
-    like.classList.add('allignLeft');
+    unlike.classList.add("allignLeft", "unlikeBtn", uniqueId);
+    likeBtn.classList.add('allignLeft', "likeBtn", uniqueId);
     heart.classList.add("allignLeft");
     heartIcon.classList.add("fa", "fa-heart");
     artistName.classList.add("allignRight");
-    like_count.classList.add("allignLeft");
+    likeDisplay.classList.add("allignLeft", "likeCount", uniqueId);
     rowDiv.classList.add("text-center", "col-md-4", "col-md-offset-4");
     captionDiv.classList.add("caption");
     return img;
@@ -96,19 +155,15 @@ function loadImg() {
                 likes = child['like_count'];
                 downloadUrl = child['downloadUrl'];
                 locoation = child['downloadUrl'];
+                key = child['id'];
                 console.log(downloadUrl);
                 console.log(artistName);
                 console.log(likes);
-                img_create(downloadUrl, artistName, likes);
-                // var createImg = document.createElement('IMG');
-                // document.body.appendChild(createImg); 
-                // createImg.classList.add('feedImg');
-                // var feedImg = document.getElementsByClassName('feedImg');
-                // feedImg.src = downloadUrl;
+                img_create(downloadUrl, artistName, likes, key);
             });
         });
 
     })
 };
 
-loadImg()
+loadImg();
