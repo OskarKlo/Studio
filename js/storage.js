@@ -38,14 +38,30 @@ uploadInfo.addEventListener('click', e => {
     artistName = artistName.value;
     artLocation = artLocation.value;
     postsRef = database.ref().child('users').child(uid).child('posts');
+    var uniqueId = makeid();
     var artistInfo = {
         artist: artistName,
         location: artLocation,
         downloadUrl: downUrl,
-        like_count: 0
+        like_count: 0,
+        id: uniqueId
     }
     postsRef.push(artistInfo);
+    // postsRef.child(key).set(artistInfo);
+    // console.log(key);
+    // idPostRef = database.ref().child('users').child(uid).child('posts').child(key).child(id);
+    // idPostRef.set(key);
 })
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 10; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 // var likeCountRef = firebase.database().ref().child('users').child(uid).child('posts').orderByChild('like_count');
 

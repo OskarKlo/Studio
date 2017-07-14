@@ -51,6 +51,10 @@ function img_create(src, artist, likes, location) {
     var captionDiv = document.createElement('div');
     var img = document.createElement('img');
     var artistName = document.createElement('small');
+    var like = document.createElement('button');
+    var unlike = document.createElement('button');
+    like.innerHTML = "Like";
+    unlike.innerHTML = "Unlike";
     var heart = document.createElement('small');
     var heartIcon = document.createElement('i');
     var like_count = document.createElement('small');
@@ -59,6 +63,8 @@ function img_create(src, artist, likes, location) {
     img.src = src;
     img.width = '500';
     img.height = '350';
+    captionDiv.appendChild(like);
+    captionDiv.appendChild(unlike);
     rowDiv.appendChild(img);
     rowDiv.appendChild(captionDiv);
     captionDiv.appendChild(heart);
@@ -66,6 +72,8 @@ function img_create(src, artist, likes, location) {
     captionDiv.appendChild(artistName);
     captionDiv.appendChild(like_count);
     document.body.appendChild(rowDiv);
+    unlike.classList.add("allignLeft");
+    like.classList.add('allignLeft');
     heart.classList.add("allignLeft");
     heartIcon.classList.add("fa", "fa-heart");
     artistName.classList.add("allignRight");
@@ -87,6 +95,7 @@ function loadImg() {
                 artistName = child['artist'];
                 likes = child['like_count'];
                 downloadUrl = child['downloadUrl'];
+                locoation = child['downloadUrl'];
                 console.log(downloadUrl);
                 console.log(artistName);
                 console.log(likes);
