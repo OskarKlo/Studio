@@ -44,21 +44,34 @@ function feedLoad() {
 //             console.log(child.val()) // NOW THE CHILDREN PRINT IN ORDER
 //         });
 
-function img_create(src, artist, likes) {
-    var div = document.createElement('div');
+
+
+function img_create(src, artist, likes, location) {
+    var rowDiv = document.createElement('div');
+    var captionDiv = document.createElement('div');
     var img = document.createElement('img');
-    var artistName = document.createElement('p');
-    // var likes = document.createElement('p');
+    var artistName = document.createElement('small');
+    var heart = document.createElement('small');
+    var heartIcon = document.createElement('i');
     var like_count = document.createElement('small');
     artistName.innerHTML = artist;
     like_count.innerHTML = likes;
     img.src = src;
-    img.width = '700';
-    img.height = '450';
-    div.appendChild(img);
-    div.appendChild(artistName);
-    div.appendChild(like_count);
-    document.body.appendChild(div);
+    img.width = '500';
+    img.height = '350';
+    rowDiv.appendChild(img);
+    rowDiv.appendChild(captionDiv);
+    captionDiv.appendChild(heart);
+    heart.appendChild(heartIcon);
+    captionDiv.appendChild(artistName);
+    captionDiv.appendChild(like_count);
+    document.body.appendChild(rowDiv);
+    heart.classList.add("allignLeft");
+    heartIcon.classList.add("fa", "fa-heart");
+    artistName.classList.add("allignRight");
+    like_count.classList.add("allignLeft");
+    rowDiv.classList.add("text-center", "col-md-4", "col-md-offset-4");
+    captionDiv.classList.add("caption");
     return img;
 }
 
