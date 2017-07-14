@@ -44,13 +44,13 @@ uploadInfo.addEventListener('click', e => {
         location: artLocation,
         downloadUrl: downUrl,
         like_count: 0,
-        id: uniqueId
+        id: "empty"
     }
-    postsRef.push(artistInfo);
+    var key = postsRef.push(artistInfo).key;
     // postsRef.child(key).set(artistInfo);
     // console.log(key);
-    // idPostRef = database.ref().child('users').child(uid).child('posts').child(key).child(id);
-    // idPostRef.set(key);
+    idPostRef = database.ref().child('users').child(uid).child('posts').child(key);
+    idPostRef.update({id: key});
 })
 
 function makeid() {
