@@ -37,4 +37,33 @@ function feedLoad() {
     })
 }
 
-feedLoad();
+// feedLoad();
+
+// ref.child("users").orderByChild('last_update').on("value", function (snapshot) {
+//         snapshot.forEach(function(child) {
+//             console.log(child.val()) // NOW THE CHILDREN PRINT IN ORDER
+//         });
+
+function loadImg() {
+    auth.onAuthStateChanged(user => {
+        var uid = user.uid;
+        userRef = firebase.database().ref().child('users').child(uid);
+        postRef = userRef.child('posts');
+        postRef.orderByChild('downloadUrl').on("value", function (snapshot) {
+            snapshot.forEach(function(child) {
+                console.log(child.val())
+                child = child.val();
+                downloadUrl = child['downloadUrl'];
+                console.log(downloadUrl);
+                var createImg = document.createElement('IMG');
+                document.body.appendChild(createImg); 
+                createImg.classList.add('feedImg');
+                var feedImg = document.getElementsByClassName('feedImg');
+                feedImg.src = downloadUrl;
+            });
+        });
+
+    })
+};
+
+loadImg()
