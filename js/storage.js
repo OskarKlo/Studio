@@ -39,18 +39,24 @@ uploadInfo.addEventListener('click', e => {
     artLocation = artLocation.value;
     postsRef = database.ref().child('users').child(uid).child('posts');
     var uniqueId = makeid();
+    var currentTime = getDate();
     var artistInfo = {
         artist: artistName,
         location: artLocation,
         downloadUrl: downUrl,
         like_count: 0,
-        id: "empty"
+        id: "empty",
+        date: currentTime
     }
     var key = postsRef.push(artistInfo).key;
     // postsRef.child(key).set(artistInfo);
     // console.log(key);
     idPostRef = database.ref().child('users').child(uid).child('posts').child(key);
     idPostRef.update({id: key});
+    alert('Uploaded Successfuly');
+}).catch(function(error) {
+    console.log('Error, image not loaded fully.')
+    alert('Wait for the image to load fully.');
 })
 
 function makeid() {

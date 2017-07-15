@@ -93,13 +93,14 @@ function feedLoad() {
 //         likeDisplay.innerHTML = likes;
 //     })
 
-function img_create(src, artist, likes, key) {
+function img_create(src, artist, likes, key, date) {
     var uniqueId = makeid();
     var like_countPostRef = database.ref().child('users').child(uid).child('posts').child(key).child('like_count');
     var rowDiv = document.createElement('div');
     var captionDiv = document.createElement('div');
     var img = document.createElement('img');
     var artistName = document.createElement('small');
+    var dateOfUpload = document.createElement('small');
     var likeBtn = document.createElement('button');
     var unlike = document.createElement('button');
     likeBtn.innerHTML = "Like";
@@ -112,18 +113,30 @@ function img_create(src, artist, likes, key) {
     //         return (current_value || 0) + 1;
     //     });
     // };
+    // likeBtn.addEventListener('change', e => {
+    //     var like_countRef = like_countPostRef;
+    //     var likes = like_countRef.val();
+    //     likeDisplay.innerHTML = likes;
+    // })
     // unlike.onclick = function() {
     //     like_countPostRef.transaction(function (current_value) {
     //         return (current_value || 0) - 1;
     //     });
     // };
+    // unlike.addEventListener('change', e => {
+    //     var like_countRef = like_countPostRef;
+    //     var likes = like_countRef.val();
+    //     likeDisplay.innerHTML = likes;
+    // })
     likeDisplay.innerHTML = likes;
     artistName.innerHTML = artist;
+    dateOfUpload.innerHTML = date;
     img.src = src;
-    img.width = '600';
-    img.height = '450';
+    img.width = 600;
+    img.height = 400;
     captionDiv.appendChild(likeBtn);
     captionDiv.appendChild(unlike);
+    captionDiv.appendChild(dateOfUpload);
     rowDiv.appendChild(img);
     rowDiv.appendChild(captionDiv);
     captionDiv.appendChild(heart);
@@ -133,13 +146,14 @@ function img_create(src, artist, likes, key) {
     document.body.appendChild(rowDiv);
     unlike.classList.add("allignLeft", "unlikeBtn", uniqueId);
     likeBtn.classList.add('allignLeft', "likeBtn", uniqueId);
+    dateOfUpload.classList.add('allignRight');
     heart.classList.add("allignLeft");
     heartIcon.classList.add("fa", "fa-heart");
     artistName.classList.add("allignRight");
     likeDisplay.classList.add("allignLeft", "likeCount", uniqueId);
     rowDiv.classList.add("text-center", "col-md-4", "col-md-offset-4");
     captionDiv.classList.add("caption");
-    return img;
+    // return;
 }
 
 function loadImg() {
@@ -151,15 +165,75 @@ function loadImg() {
             snapshot.forEach(function(child) {
                 console.log(child.val())
                 child = child.val();
-                artistName = child['artist'];
+                artist = child['artist'];
                 likes = child['like_count'];
                 downloadUrl = child['downloadUrl'];
                 locoation = child['downloadUrl'];
                 key = child['id'];
-                console.log(downloadUrl);
-                console.log(artistName);
-                console.log(likes);
-                img_create(downloadUrl, artistName, likes, key);
+                date = child['date'];
+                
+                var uniqueId = makeid();
+                var like_countPostRef = database.ref().child('users').child(uid).child('posts').child(key).child('like_count');
+                var rowDiv = document.createElement('div');
+                var captionDiv = document.createElement('div');
+                var img = document.createElement('img');
+                var artistName = document.createElement('small');
+                var dateOfUpload = document.createElement('small');
+                var likeBtn = document.createElement('button');
+                var unlike = document.createElement('button');
+                likeBtn.innerHTML = "Like";
+                unlike.innerHTML = "Unlike";
+                var heart = document.createElement('small');
+                var heartIcon = document.createElement('i');
+                var likeDisplay = document.createElement('small');
+                // likeBtn.onclick = function() {
+                //     like_countPostRef.transaction(function (current_value) {
+                //         return (current_value || 0) + 1;
+                //     });
+                // };
+                // likeBtn.addEventListener('change', e => {
+                //     var like_countRef = like_countPostRef;
+                //     var likes = like_countRef.val();
+                //     likeDisplay.innerHTML = likes;
+                // })
+                // unlike.onclick = function() {
+                //     like_countPostRef.transaction(function (current_value) {
+                //         return (current_value || 0) - 1;
+                //     });
+                // };
+                // unlike.addEventListener('change', e => {
+                //     var like_countRef = like_countPostRef;
+                //     var likes = like_countRef.val();
+                //     likeDisplay.innerHTML = likes;
+                // })
+                likeDisplay.innerHTML = likes;
+                artistName.innerHTML = artist;
+                dateOfUpload.innerHTML = date;
+                img.src = downloadUrl;
+                img.width = 600;
+                img.height = 400;
+                captionDiv.appendChild(likeBtn);
+                captionDiv.appendChild(unlike);
+                captionDiv.appendChild(dateOfUpload);
+                rowDiv.appendChild(img);
+                rowDiv.appendChild(captionDiv);
+                captionDiv.appendChild(heart);
+                heart.appendChild(heartIcon);
+                captionDiv.appendChild(artistName);
+                captionDiv.appendChild(likeDisplay);
+                document.body.appendChild(rowDiv);
+                unlike.classList.add("allignLeft", "unlikeBtn", uniqueId);
+                likeBtn.classList.add('allignLeft', "likeBtn", uniqueId);
+                dateOfUpload.classList.add('allignRight');
+                heart.classList.add("allignLeft");
+                heartIcon.classList.add("fa", "fa-heart");
+                artistName.classList.add("allignRight");
+                likeDisplay.classList.add("allignLeft", "likeCount", uniqueId);
+                rowDiv.classList.add("text-center", "col-md-4", "col-md-offset-4");
+                captionDiv.classList.add("caption");
+
+
+                // img_create(downloadUrl, artistName, likes, key, date);
             });
         });
 
@@ -167,3 +241,9 @@ function loadImg() {
 };
 
 loadImg();
+
+function addLike(e) {
+    var ref = database.ref().child('users').child(uid).child('posts').child(e).child(like_count);
+    var like_count = ref.val();
+    console.log(like_count);
+}

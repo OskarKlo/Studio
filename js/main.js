@@ -15,23 +15,35 @@ var database = firebase.database();
 
 var uid;
 
-var today = new Date();
-var hh = today.getHours();
-var tt = today.getSeconds();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
+function getDate() {
+    var today = new Date();
+    var hh = today.getHours();
+    var tt = today.getMinutes();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
 
-if(dd<10) {
-    dd = '0'+dd
-} 
+    if(dd<10) {
+        dd = '0'+dd
+    }
 
-if(mm<10) {
-    mm = '0'+mm
-} 
+    if(mm<10) {
+        mm = '0'+mm
+    }
+    today = hh + ':' + tt + '|' + mm + '/' + dd + '/' + yyyy;
 
-today = hh + ':' + tt + '|' + mm + '/' + dd + '/' + yyyy;
-console.log(today);
+    console.log(today);
+
+    var update = setInterval(getDate, 60000);
+
+    return today;
+}
+
+getDate();
+
+
+
+
 
     //Login Event
     btnLogin.addEventListener('click', e => {
