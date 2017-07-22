@@ -227,8 +227,8 @@ function loadImg() {
                 captionDiv.appendChild(artistName);
                 captionDiv.appendChild(likeDisplay);
                 document.body.appendChild(rowDiv);
-                unlike.classList.add("allignLeft", "unlikeBtn", uniqueId);
-                likeBtn.classList.add('allignLeft', "likeBtn", uniqueId);
+                unlike.classList.add("allignLeft", "unlikeBtn");
+                likeBtn.classList.add('allignLeft', "likeBtn");
                 dateOfUpload.classList.add('allignRight');
                 heart.classList.add("allignLeft");
                 heartIcon.classList.add("fa", "fa-heart");
@@ -245,7 +245,7 @@ function loadImg() {
     })
 };
 
-// loadImg();
+loadImg();
 
 
 function likeImg(key) {
@@ -285,26 +285,69 @@ function likeImg(key) {
 // }
 
 
+// function loadPage() {
+//     var ref = database.ref().child('users').child(uid).child('posts');
+//     ref.orderByChild('donwloadUrl').on('value', function(snapshot) {
+//         snapshot.forEach(function(childSnap) {
+//             child = childSnap.val();
+//             imgUrl = child['downloadUrl'];
+//             key = child['id'];
+//             var mainDiv = document.createElement('div');
+//             var imgElement = document.createElement('img');
+//             imgElement.src = imgUrl;
+//             mainDiv.appendChild(imgElement);
+//             document.body.appendChild(mainDiv);
+//             mainDiv.classList.add('mainDiv');
+//         })
+//     })
+// }
+
+// loadPage();
 
 
+// function loadBase() {
+//     auth.onAuthStateChanged(user=>{
+//         uid = user.uid;
+//         var ref = database.ref().child('users').child(uid).child('posts');
+//         ref.orderByChild('id').on('value', function(snapshot) {
+//             snapshot.forEach(function(child) {
+//                 child = child.val();
+//                 var key = child['id'];
+//                 var div = document.createElement('div');
+//                 var img = document.createElement('img');
+//                 var caption = document.createElement('div');
+//                 var artistName = document.createElement('p');
+//                 var likeBtn = document.createElement('button');
+//                 var idBox = document.createElement('p');
+//                 idBox.innerHTML = key;
+//                 likeBtn.innerHTML = "Like";
+//                 var unlikeBtn = document.createElement('button');
+//                 unlikeBtn.innerHTML = "UnLike";
+//                 var likeCount = document.createElement('p');
+//                 artistName.innerHTML = "Hidden";
+//                 document.body.appendChild(div);
+//                 div.appendChild(img);
+//                 div.appendChild(caption);
+//                 caption.appendChild(artistName);
+//                 caption.appendChild(likeBtn);
+//                 caption.appendChild(unlikeBtn);
+//                 caption.appendChild(likeCount);
+//                 caption.appendChild(idBox);
+//                 img.classList.add('storageImg');
+//             })
+//         })
+//     })
+// }
 
+// loadBase();
 
-
-
-
-
-
-function loadPage() {
-    var ref = database.ref().child('users').child(uid).child('posts');
-    ref.orderByChild('donwloadUrl').on('value', function(snapshot) {
-        snapshot.forEach(function(childSnap) {
-            child = childSnap.val();
-            imgUrl = child['downloadUrl'];
-            key = child['id'];
-            var mainDiv = document.createElement('div');
-            var imgElement = document.createElement('img');
-            imgElement.src = imgUrl;
-            
-        })
-    })
-}
+// var postsDbRef = database.ref().child('users').child(uid).child('posts');
+// postsDbRef.orderByChild('downloadUrl').on('value', function(snapshot) {
+//     snapshot.forEach(function(child){
+//         child = child.val();
+//         var key = child['id'];
+//         var downUrl = child['downloadUrl'];
+//         var artistTag = child['artist'];
+//         document.getElementsByClassName('storageImg').forEach()
+//     })
+// })
