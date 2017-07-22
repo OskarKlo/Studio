@@ -176,6 +176,7 @@ function loadImg() {
                 var like_countPostRef = database.ref().child('users').child(uid).child('posts').child(key).child('like_count');
                 var rowDiv = document.createElement('div');
                 var captionDiv = document.createElement('div');
+                var imgDiv = document.createElement('div');
                 var img = document.createElement('img');
                 var artistName = document.createElement('small');
                 var dateOfUpload = document.createElement('small');
@@ -186,6 +187,9 @@ function loadImg() {
                 var heart = document.createElement('small');
                 var heartIcon = document.createElement('i');
                 var likeDisplay = document.createElement('small');
+                likeBtn.setAttribute('onclick', 'likeImg(key)');
+                // likeBtn.onclick = "likeImg(key)";
+                // unlike.onclick = "unlikeImg(key)";
                 // likeBtn.onclick = function() {
                 //     like_countPostRef.transaction(function (current_value) {
                 //         return (current_value || 0) + 1;
@@ -215,7 +219,8 @@ function loadImg() {
                 captionDiv.appendChild(likeBtn);
                 captionDiv.appendChild(unlike);
                 captionDiv.appendChild(dateOfUpload);
-                rowDiv.appendChild(img);
+                imgDiv.appendChild(img);
+                rowDiv.appendChild(imgDiv);
                 rowDiv.appendChild(captionDiv);
                 captionDiv.appendChild(heart);
                 heart.appendChild(heartIcon);
@@ -227,7 +232,7 @@ function loadImg() {
                 dateOfUpload.classList.add('allignRight');
                 heart.classList.add("allignLeft");
                 heartIcon.classList.add("fa", "fa-heart");
-                artistName.classList.add("allignRight");
+                artistName.classList.add("allignRight", "artistNameTxt");
                 likeDisplay.classList.add("allignLeft", "likeCount", uniqueId);
                 rowDiv.classList.add("text-center", "col-md-4", "col-md-offset-4");
                 captionDiv.classList.add("caption");
@@ -240,10 +245,66 @@ function loadImg() {
     })
 };
 
-loadImg();
+// loadImg();
 
-function addLike(e) {
-    var ref = database.ref().child('users').child(uid).child('posts').child(e).child(like_count);
-    var like_count = ref.val();
-    console.log(like_count);
+
+function likeImg(key) {
+    var postRef = database.ref().child('users').child(uid).child('posts').child(key);
+    var like_countRef = postRef.child('like_count');
+    like_countRef.transaction(function (current_value) {
+        return (current_value || 0) + 1;
+        });
+    console.log('likeAdded');
+}
+
+
+
+// window.onload = function() {
+//   var div = document.createElement('div');
+//   var img = document.createElement('img');
+//   div.appendChild(img);
+//   document.body.appendChild(div);
+//   img.classList.add('loadImg');
+//   img.width = 600;
+//   img.height = 400;
+//   loadImages();
+// };
+
+// function loadImages() {
+//     var userRef = database.ref().child('users').child(uid);
+//     var postsRef = userRef.child('posts');
+//     postsRef.orderByChild('downloadUrl').on('value', function (snapshot) {
+//         snapshot.forEach(function(child) {
+//             var url = child['downloadUrl'];
+//             var imgBox = document.getElementsByClassName('loadImg');
+//             for(var i = 0; i < imgBox.length; i++) {
+//                 i.src = url;
+//             }
+//         })
+//     })
+// }
+
+
+
+
+
+
+
+
+
+
+
+function loadPage() {
+    var ref = database.ref().child('users').child(uid).child('posts');
+    ref.orderByChild('donwloadUrl').on('value', function(snapshot) {
+        snapshot.forEach(function(childSnap) {
+            child = childSnap.val();
+            imgUrl = child['downloadUrl'];
+            key = child['id'];
+            var mainDiv = document.createElement('div');
+            var imgElement = document.createElement('img');
+            imgElement.src = imgUrl;
+            
+        })
+    })
 }
